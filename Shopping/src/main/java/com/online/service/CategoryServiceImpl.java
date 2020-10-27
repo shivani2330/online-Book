@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.online.dao.CategoryDao;
-import com.online.model.Category;
+import com.online.model.BookCategory;
 
 @Service
 @Transactional
@@ -18,19 +18,19 @@ public class CategoryServiceImpl implements CategoryService {
 	CategoryDao dao;
 
 	@Override
-	public List<Category> list() {
+	public List<BookCategory> list() {
 		// TODO Auto-generated method stub
 		return dao.findAll();
 	}
 
 	@Override
-	public Optional<Category> update(Category category) {
+	public Optional<BookCategory> update(BookCategory category) {
 		// TODO Auto-generated method stub
-	     Optional<Category> categorydb = dao.findById(category.getId());
+	     Optional<BookCategory> categorydb = dao.findById(category.getId());
 	     
 	     if(categorydb.isPresent())
 	     {
-	    	 Category cat = categorydb.get();
+	    	 BookCategory cat = categorydb.get();
 	    	 cat.setId(category.getId());
 	    	 cat.setName(category.getName());
 	    	 cat.setImageurl(category.getImageurl());

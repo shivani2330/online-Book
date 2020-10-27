@@ -18,7 +18,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.online.dao.CategoryDao;
-import com.online.model.Category;
+import com.online.model.BookCategory;
 
 @ExtendWith(MockitoExtension.class)
 public class CategoryServiceTest {
@@ -30,14 +30,14 @@ public class CategoryServiceTest {
 	CategoryService service= new CategoryServiceImpl();	
 	
 	@Spy 
-	Category category;
+	BookCategory category;
 	
 	@Test
 	void test_for_list_of_Category()
 	{
-		when(dao.findAll()).thenReturn(Stream.of(new Category("Book","Autoboiography","book.png",true)).collect(Collectors.toList()));
+		when(dao.findAll()).thenReturn(Stream.of(new BookCategory("Book","Autoboiography","book.png",true)).collect(Collectors.toList()));
 		
-		List<Category> list = service.list();
+		List<BookCategory> list = service.list();
 		
 		Assertions.assertEquals(1,list.size());
 	}
@@ -50,7 +50,7 @@ public class CategoryServiceTest {
 		
 		when(dao.findById(category.getId())).thenReturn(Optional.of(category));
 		
-		Optional<Category> opt = service.update(category);
+		Optional<BookCategory> opt = service.update(category);
 		
 		Assertions.assertEquals(category,opt.get());
 		

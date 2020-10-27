@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.online.model.Category;
+import com.online.model.BookCategory;
 import com.online.service.CategoryService;
 import com.online.service.CategoryServiceImpl;
 
@@ -29,13 +29,13 @@ public class CategoryControllerTest {
 	CategoryController controller;
 	
 	@Spy
-	Category category;
+	BookCategory category;
 	
 	@Test
 	void test_fro_controller()
 	{
-		when(service.list()).thenReturn(Stream.of(new Category("Book","Autoboiography","book.png",true)).collect(Collectors.toList()));
-		List<Category >list = (List<Category>) controller.getlist().getBody();
+		when(service.list()).thenReturn(Stream.of(new BookCategory("Book","Autoboiography","book.png",true)).collect(Collectors.toList()));
+		List<BookCategory >list = (List<BookCategory>) controller.getlist().getBody();
 		Assertions.assertEquals(1,list.size());
 	}
 	
