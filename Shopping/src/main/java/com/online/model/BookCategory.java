@@ -28,12 +28,12 @@ public class BookCategory {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private int id;
 	
 	@Column(name="category_name")
 	private String categoryname;
 	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="category")
+	@OneToMany
 	private Set<Book> book;
 	
 	
