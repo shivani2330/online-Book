@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
 })
 export class BookserviceService {
 
-  private baseUrl= 'http://localhost:8081/api/';
+  private baseUrl= 'http://localhost:8081/books';
 
   constructor(private http:HttpClient) { }
 
@@ -17,19 +17,22 @@ export class BookserviceService {
 
      /* Map operator hepls us to convert the response in Book[] */
 
-  getBooks():Observable<Book[]>
+  getBooks():Observable<any>
   {
-      return this.http.get<GetResposeBooks>(this.baseUrl+'books').pipe
-      (
-        map(Response=>Response._embedded.books)
-      );
+      return this.http.get(`${this.baseUrl}`);
+  }
+
+  getBooksByCategoryId(id:number):Observable<any>
+  {
+    
+     return this.http.get(`${this.baseUrl}/category/${categoryid}`);
   }
 
 }
 
-interface GetResposeBooks
+/* interface GetResposeBooks
   {
     _embedded:{
       books:Book[]; //this helps us to unwarp the book array from the json response
     }
-  }
+  } */
